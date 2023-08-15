@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { memo } from "react"
+import { Provider } from 'react-redux'
 
-function App() {
+import { HashRouter } from "react-router-dom"
+import store from './store'
+import { BackTop } from 'antd'
+import JMAppHeader from 'components/app-header'
+import JMAppFooter from 'components/app-footer'
+import JMAppPlayerBar from './pages/player/app-player-bar'
+import APPWrapper from './pages/app'
+
+function App () {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Provider store={store}>
+      <HashRouter>
+        <JMAppHeader />
+        <APPWrapper />
+        <JMAppFooter />
+        <JMAppPlayerBar />
+        <BackTop />
+      </HashRouter>
+    </Provider>
+  )
 }
 
-export default App;
+export default memo(App)
